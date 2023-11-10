@@ -3,7 +3,7 @@ import ProductComponent from "./productComponent";
 import Tomato from "../assets/tomato.png";
 
 const VegetablesRow = () => {
-  const products = [
+  window.products = [
     { id: 1, name: "Tomato", price: 20, imageUrl: Tomato },
     { id: 2, name: "Tomato", price: 20, imageUrl: Tomato },
     { id: 3, name: "Tomato", price: 20, imageUrl: Tomato },
@@ -23,30 +23,29 @@ const VegetablesRow = () => {
     console.log("Buy Now clicked of ID" + productID);
   };
 
-  let cart = [];
   //Cart operation
   const handleAddToCartClick = (productID) => {
     console.log("Add to Cart clicked of ID" + productID);
-    cart.push(getProduct(productID));
+    window.cart.push(getProduct(productID));
     console.log(cart);
   };
 
   //Remove from the cart operation
   const removeFromCartButton = (productID) => {
-    cart = cart.filter((item) => item.id !== productID);
+    window.cart = window.cart.filter((item) => item.id !== productID);
     console.log(cart);
   };
 
   //To fetch particular productID
   const getProduct = (productID) => {
-    return products.find((product) => product.id === productID);
+    return window.products.find((product) => product.id === productID);
   };
 
   return (
     <div>
       <h1>Vegetables</h1>
       <div className="product-box">
-        {products.map((product) => (
+        {window.products.map((product) => (
           <ProductComponent
             key={product.id}
             productDetails={product}

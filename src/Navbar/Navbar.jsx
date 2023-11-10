@@ -1,13 +1,13 @@
 import React from "react";
 import "../scss/styles.scss";
+import Logo from "../assets/farmO.png";
+import "../Banner/Banner.css";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Navbar
-        </a>
+        <img src={Logo} alt="Logo" className="navbar-logo" />
         <button
           className="navbar-toggler"
           type="button"
@@ -22,34 +22,37 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <a
+                className="nav-link active fs-5 fw-bold"
+                aria-current="page"
+                href="#"
+              >
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
+              <a
+                className="nav-link active fs-5 fw-bold"
+                aria-current="page"
+                href="#"
+              >
+                Weather
               </a>
             </li>
             <li className="nav-item dropdown">
               <a
-                className="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle fs-5 fw-bold"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                Login
               </a>
               <ul className="dropdown-menu">
                 <li>
                   <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
+                    Login as Farmer
                   </a>
                 </li>
                 <li>
@@ -57,15 +60,10 @@ const Navbar = () => {
                 </li>
                 <li>
                   <a className="dropdown-item" href="#">
-                    Something else here
+                    Login as customer
                   </a>
                 </li>
               </ul>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled" aria-disabled="true">
-                Disabled
-              </a>
             </li>
           </ul>
           <form className="d-flex" role="search">

@@ -1,3 +1,7 @@
+.product-page {
+  padding: 2rem;
+  padding-left: 4rem;
+}
 .product {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -59,4 +63,18 @@
 
 .product-box::-webkit-scrollbar {
   width: 12px;
+}
+.navbar-logo {
+  height: 4rem;
+  margin-left: 3rem;
+  filter: brightness(0.8);
+}
+.nav-item {
+  padding-left: 1.2rem;
+}
+.productpage-banner {
+  width: 100%; /* Make the image take up 100% of its container's width */
+  height: auto; /* Maintain the image's aspect ratio */
+  display: block; /* Remove any default inline styles */
+  margin: 0 auto; /* Center the image horizontally */
 }

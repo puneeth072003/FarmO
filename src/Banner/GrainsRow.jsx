@@ -2,8 +2,8 @@ import React from "react";
 import ProductComponent from "./productComponent";
 import Tomato from "../assets/tomato.png";
 
-const FruitsRow = () => {
-  const fruits = [
+const GrainsRow = () => {
+  window.grains = [
     { id: 1, name: "Apple", price: 20, imageUrl: Tomato },
     { id: 2, name: "Tomato", price: 20, imageUrl: Tomato },
     { id: 3, name: "Tomato", price: 20, imageUrl: Tomato },
@@ -23,30 +23,29 @@ const FruitsRow = () => {
     console.log("Buy Now clicked of ID" + productID);
   };
 
-  let cart = [];
   //Cart operation
   const handleAddToCartClick = (productID) => {
     console.log("Add to Cart clicked of ID" + productID);
-    cart.push(getProduct(productID));
+    window.cart.push(getProduct(productID));
     console.log(cart);
   };
 
   //Remove from the cart operation
   const removeFromCartButton = (productID) => {
-    cart = cart.filter((item) => item.id !== productID);
+    window.cart = window.cart.filter((item) => item.id !== productID);
     console.log(cart);
   };
 
   //To fetch particular productID
   const getProduct = (productID) => {
-    return fruits.find((product) => product.id === productID);
+    return window.grains.find((product) => product.id === productID);
   };
 
   return (
     <div>
       <h1>Grains</h1>
       <div className="product-box">
-        {fruits.map((product) => (
+        {window.grains.map((product) => (
           <ProductComponent
             key={product.id}
             productDetails={product}
