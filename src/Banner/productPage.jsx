@@ -6,12 +6,14 @@ import FruitsRow from "./FruitsRow";
 import GrainsRow from "./GrainsRow";
 const ProductPage = () => {
   return (
-    <div className="product-page">
+    <>
       <img src={Banner} alt="Banner" className="productpage-banner" />
-      <VegetablesRow />
-      <FruitsRow />
-      <GrainsRow />
-    </div>
+      <div className="product-page">
+        <VegetablesRow />
+        <FruitsRow />
+        <GrainsRow />
+      </div>
+    </>
   );
 };
 

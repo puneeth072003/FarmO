@@ -1,8 +1,18 @@
 import React from "react";
 import ProductComponent from "./productComponent";
 import Tomato from "../assets/tomato.png";
+import { useState } from "react";
+import ModalComponent from "../Modal/Modal";
 
 const VegetablesRow = () => {
+  const VegefarmersData = [
+    { id: 1, name: "Farmer John", price: 18 },
+    { id: 2, name: "Farmer Jane", price: 20 },
+    { id: 3, name: "Farmer Mike", price: 17.5 },
+    { id: 4, name: "Farmer Sarah", price: 19 },
+    { id: 5, name: "Farmer Bob", price: 18.8 },
+  ];
+
   window.products = [
     { id: 1, name: "Tomato", price: 20, imageUrl: Tomato },
     { id: 2, name: "Tomato", price: 20, imageUrl: Tomato },
@@ -18,9 +28,19 @@ const VegetablesRow = () => {
     { id: 12, name: "Tomato", price: 20, imageUrl: Tomato },
   ];
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProductID, setSelectedProductID] = useState(null);
+
   //Buy operations
   const handleBuyClick = (productID) => {
-    console.log("Buy Now clicked of ID" + productID);
+    console.log("Buy Now clicked of ID " + productID);
+    setSelectedProductID(productID);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProductID(null);
   };
 
   //Cart operation
@@ -53,6 +73,12 @@ const VegetablesRow = () => {
             onAddToCartClick={() => handleAddToCartClick(product.id)}
           />
         ))}
+        <ModalComponent
+          isOpen={isModalOpen}
+          closeModal={closeModal}
+          productInfo={window.products}
+          farmersData={VegefarmersData}
+        />
       </div>
     </div>
   );

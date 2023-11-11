@@ -74,7 +74,7 @@
 }
 .productpage-banner {
   width: 100%; /* Make the image take up 100% of its container's width */
-  height: auto; /* Maintain the image's aspect ratio */
+  height: 90%; /* Maintain the image's aspect ratio */
   display: block; /* Remove any default inline styles */
   margin: 0 auto; /* Center the image horizontally */
 }
