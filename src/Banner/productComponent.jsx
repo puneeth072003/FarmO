@@ -7,7 +7,7 @@ const ProductComponent = ({ productDetails, onBuyClick, onAddToCartClick }) => {
     <div className="product">
       <img src={imageUrl} alt={name} className="product-img" />
       <h2 className="product-title">{name}</h2>
-      <p className="product-price">Price: {price}</p>
+      <p className="product-price">Avg price: {price}</p>
       <div className="button-container">
         <button onClick={onBuyClick}>Buy Now</button>
         <button onClick={onAddToCartClick}>Add to Cart</button>

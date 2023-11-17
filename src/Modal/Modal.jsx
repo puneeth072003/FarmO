@@ -46,11 +46,11 @@ const BuyModalComponent = ({
 
         <div className="modal-body">
           <h3>{productInfo.name}</h3>
-          <p>Quantity: {productInfo.quantity}</p>
+          <p>Diffrent prices: {productInfo.quantity}</p>
           <ul>
             {farmersData.map((farmer) => (
               <li key={farmer.id}>
-                {farmer.name}: ${farmer.price} per unit
+                {farmer.name}: ₹{farmer.price} per kg
               </li>
             ))}
           </ul>

@@ -3,21 +3,6 @@ import ProductComponent from "./productComponent";
 import Tomato from "../assets/tomato.png";
 
 const FruitsRow = () => {
-  window.fruits = [
-    { id: 1, name: "Apple", price: 20, imageUrl: Tomato },
-    { id: 2, name: "Tomato", price: 20, imageUrl: Tomato },
-    { id: 3, name: "Tomato", price: 20, imageUrl: Tomato },
-    { id: 4, name: "Tomato", price: 20, imageUrl: Tomato },
-    { id: 5, name: "Tomato", price: 20, imageUrl: Tomato },
-    { id: 6, name: "Tomato", price: 20, imageUrl: Tomato },
-    { id: 7, name: "Tomato", price: 20, imageUrl: Tomato },
-    { id: 8, name: "Tomato", price: 20, imageUrl: Tomato },
-    { id: 9, name: "Tomato", price: 20, imageUrl: Tomato },
-    { id: 10, name: "Tomato", price: 20, imageUrl: Tomato },
-    { id: 11, name: "Tomato", price: 20, imageUrl: Tomato },
-    { id: 12, name: "Tomato", price: 20, imageUrl: Tomato },
-  ];
-
   //Buy operations
   const handleBuyClick = (productID) => {
     console.log("Buy Now clicked of ID" + productID);
