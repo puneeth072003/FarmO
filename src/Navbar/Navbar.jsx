@@ -2,6 +2,7 @@ import React from "react";
 import "../scss/styles.scss";
 import Logo from "../assets/farmO.png";
 import "../Banner/Banner.css";
+import { redirect } from "react-router-dom";
 
 const Navbar = () => {
   return (

@@ -4,6 +4,7 @@ import Tomato from "../assets/Tomato.png";
 import { useState } from "react";
 import "./Cart.css";
 import Logowhite from "./asssets/logowhite.png";
+import { redirect } from "react-router-dom";
 
 const CartRow = () => {
   window.Cart = [
@@ -45,9 +46,10 @@ const CartRow = () => {
   }, [cart]);
 
   let prevCart = window.cart;
+  window.bought = prevCart.length;
   const BuyAll = () => {
     // Clear the entire cart
-    prevCart = cart;
+
     setCart([]);
     setCartEmpty(false);
 
@@ -65,7 +67,7 @@ const CartRow = () => {
           />
         ))}
       </div>
-      <div className="button-container">
+      <div>
         <h3>
           {cartEmpty
             ? "You can buy all the Items above by clicking this button below"
@@ -85,11 +87,9 @@ const CartRow = () => {
             Buy All
           </button>
         ) : (
-          <link to="/products">
-            <button onClick={BuyAll} className="buyAllButton">
-              Browse products
-            </button>
-          </link>
+          <button onClick={BuyAll} className="buyAllButton">
+            Browse products
+          </button>
         )}
       </div>
       {/* Offcanvas Markup */}
@@ -113,7 +113,8 @@ const CartRow = () => {
         </div>
         <div className="offcanvas-body">
           <div>
-            <h5>You have bought {prevCart.length} products using FarmO.</h5>
+            <h3>Price: xxxxxx </h3>
+            <h5>Order successfully placed using FarmO.</h5>
             <br />
             <br />
             <h4>Thank you for using</h4>
