@@ -85,9 +85,11 @@ const CartRow = () => {
             Buy All
           </button>
         ) : (
-          <button onClick={BuyAll} className="buyAllButton">
-            Browse products
-          </button>
+          <link to="/products">
+            <button onClick={BuyAll} className="buyAllButton">
+              Browse products
+            </button>
+          </link>
         )}
       </div>
       {/* Offcanvas Markup */}
