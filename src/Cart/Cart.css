@@ -1,0 +1,67 @@
+.Cart-box {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Adjust the gap as needed */
+}
+.Cart-page {
+  background-color: #fff;
+  margin: 0;
+  padding: 20px;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  text-align: center;
+  height: 40rem;
+}
+.Cart {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  width: 200px; /* Adjust the width as needed */
+  text-align: center;
+}
+
+.Cart h2 {
+  margin-top: 8px;
+  color: #333;
+}
+
+.Cart p {
+  color: #666;
+}
+
+.Cartbutton-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+}
+
+.Cart button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 9px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.Cart button:hover {
+  background-color: #0056b3;
+}
+.buyAllButton {
+  background-color: #4caf50; /* Green background color */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding around the text */
+  font-size: 16px; /* Font size */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.buyAllButton:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+.button-container {
+  padding: 10rem;
+}
