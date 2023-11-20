@@ -348,7 +348,6 @@ const VegetablesRow = () => {
 
   const selectedProduct = getProduct(selectedProductID);
 
-  console.log(window.products.farmers);
   return (
     <div>
       <h1>Vegetables</h1>

@@ -1,21 +1,32 @@
 import React from "react";
 import ProductComponent from "./productComponent";
-import Tomato from "../assets/tomato.png";
+import { useState } from "react";
+import ModalComponent from "../Modal/Modal";
 
 const FruitsRow = () => {
-  //Buy operations
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProductID, setSelectedProductID] = useState(null);
+
+  // Buy operations
   const handleBuyClick = (productID) => {
-    console.log("Buy Now clicked of ID" + productID);
+    console.log("Buy Now clicked of ID " + productID);
+    setSelectedProductID(productID);
+    setIsModalOpen(true);
   };
 
-  //Cart operation
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProductID(null);
+  };
+
+  // Cart operation
   const handleAddToCartClick = (productID) => {
     console.log("Add to Cart clicked of ID" + productID);
     window.cart.push(getProduct(productID));
     console.log(cart);
   };
 
-  //Remove from the cart operation
+  // Remove from the cart operation
   const removeFromCartButton = (productID) => {
     window.cart = window.cart.filter((item) => item.id !== productID);
     console.log(cart);
@@ -25,6 +36,8 @@ const FruitsRow = () => {
   const getProduct = (productID) => {
     return window.fruits.find((product) => product.id === productID);
   };
+
+  const selectedProduct = getProduct(selectedProductID);
 
   return (
     <div>
@@ -38,6 +51,14 @@ const FruitsRow = () => {
             onAddToCartClick={() => handleAddToCartClick(product.id)}
           />
         ))}
+        {isModalOpen && selectedProduct && (
+          <ModalComponent
+            isOpen={isModalOpen}
+            closeModal={closeModal}
+            productInfo={selectedProduct}
+            farmersData={selectedProduct.farmers}
+          />
+        )}
       </div>
     </div>
   );

@@ -39,6 +39,15 @@ const Navbar = () => {
                 Weather
               </a>
             </li>
+            <li className="nav-item">
+              <a
+                className="nav-link active fs-5 fw-bold"
+                aria-current="page"
+                href="#"
+              >
+                Cart
+              </a>
+            </li>
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle fs-5 fw-bold"

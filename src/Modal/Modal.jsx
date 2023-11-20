@@ -43,10 +43,10 @@ const BuyModalComponent = ({
             aria-label="Close"
           ></button>
         </div>
-
         <div className="modal-body">
-          <h3>{productInfo.name}</h3>
-          <p>Diffrent prices: {productInfo.quantity}</p>
+          <h2>{productInfo.name}</h2>
+          <h4>Diffrent prices:</h4>
+          <p>{productInfo.quantity}</p>
           <ul>
             {farmersData.map((farmer) => (
               <li key={farmer.id}>
@@ -57,10 +57,9 @@ const BuyModalComponent = ({
         </div>
 
         <div className="modal-body">
-          <h3>{productInfo.name}</h3>
-
+          <h4>What you are purchasing</h4>
           {/* Quantity selection */}
-          <label htmlFor="quantity">Quantity:</label>
+          <label htmlFor="quantity">Quantity: (in Kg)</label>
           <br />
           <input
             type="number"
