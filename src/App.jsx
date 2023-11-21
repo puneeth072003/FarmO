@@ -8,11 +8,11 @@ const App = () => {
   window.cart = [];
   return (
     <div>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Content />
+        <Support />
       </BrowserRouter>
-      <Support />
     </div>
   );
 };

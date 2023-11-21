@@ -4,7 +4,7 @@ import Tomato from "../assets/Tomato.png";
 import { useState } from "react";
 import "./Cart.css";
 import Logowhite from "./asssets/logowhite.png";
-import { redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CartRow = () => {
   window.Cart = [
@@ -87,11 +87,12 @@ const CartRow = () => {
             Buy All
           </button>
         ) : (
-          <button onClick={BuyAll} className="buyAllButton">
-            Browse products
-          </button>
+          <Link to="/product">
+            <button className="buyAllButton">Browse products</button>
+          </Link>
         )}
       </div>
+
       {/* Offcanvas Markup */}
       <div
         className="offcanvas offcanvas-start"
