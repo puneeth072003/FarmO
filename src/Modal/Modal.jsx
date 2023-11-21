@@ -2,6 +2,7 @@ import React from "react";
 import "./Modal.css";
 import Modal from "react-modal";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const BuyModalComponent = ({
   isOpen,
@@ -9,23 +10,57 @@ const BuyModalComponent = ({
   productInfo,
   farmersData,
 }) => {
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
-  const [selectedFarmer, setSelectedFarmer] = useState(null);
+  // const [selectedQuantity, setSelectedQuantity] = useState(1);
+  // const [selectedFarmer, setSelectedFarmer] = useState(null);
 
-  const handleQuantityChange = (event) => {
-    setSelectedQuantity(parseInt(event.target.value, 10));
-  };
+  // const handleQuantityChange = (event) => {
+  //   setSelectedQuantity(parseInt(event.target.value, 10));
+  // };
 
-  const handleFarmerChange = (event) => {
-    setSelectedFarmer(event.target.value);
-  };
-
+  // const handleFarmerChange = (event) => {
+  //   setSelectedFarmer(event.target.value);
+  // };
+  // ####################################################
   const handlePurchase = () => {
     console.log(
       `Purchase confirmed: ${selectedQuantity} units from Farmer ${selectedFarmer}`
     );
     closeModal();
   };
+  const [selectedFarmer, setSelectedFarmer] = useState(null);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const handleQuantityChange = (event) => {
+    console.log("Quantity changed");
+    setSelectedQuantity(parseInt(event.target.value, 10));
+    // Calculate price whenever quantity changes
+    calculateTotalPrice();
+  };
+
+  const handleFarmerChange = (event) => {
+    console.log("Farmer changed");
+    setSelectedFarmer(event.target.value);
+    // Calculate price whenever farmer changes
+    calculateTotalPrice();
+  };
+
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [selectedFarmer]);
+
+  const calculateTotalPrice = () => {
+    let farmer = farmersData.find((f) => f.name === selectedFarmer);
+    if (farmer) {
+      let pricePerKg = farmer.price;
+      let total = pricePerKg * selectedQuantity;
+      console.log("Price is being calcualted");
+      setTotalPrice(total);
+    } else {
+      setTotalPrice(0);
+    }
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -65,7 +100,10 @@ const BuyModalComponent = ({
             type="number"
             id="quantity"
             value={selectedQuantity}
-            onChange={handleQuantityChange}
+            onChange={(e) => {
+              handleQuantityChange(e);
+              calculateTotalPrice();
+            }}
             min="1"
           />
 
@@ -76,7 +114,10 @@ const BuyModalComponent = ({
           <select
             id="farmer"
             value={selectedFarmer}
-            onChange={handleFarmerChange}
+            onChange={(e) => {
+              handleFarmerChange(e);
+              calculateTotalPrice();
+            }}
           >
             <option value="" disabled>
               Select a farmer
@@ -87,6 +128,11 @@ const BuyModalComponent = ({
               </option>
             ))}
           </select>
+          <br />
+          <br />
+          <h2>
+            <b>Total: ₹{totalPrice}</b>
+          </h2>
         </div>
         <div className="modal-footer">
           <button

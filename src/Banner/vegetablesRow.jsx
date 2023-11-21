@@ -51,6 +51,7 @@ const VegetablesRow = () => {
         { name: "Farmer Jake", price: 28 },
         { name: "Farmer Emily", price: 30 },
         { name: "Farmer Ryan", price: 29 },
+        { name: "Farmer Jake", price: 28 },
       ],
     },
     {
