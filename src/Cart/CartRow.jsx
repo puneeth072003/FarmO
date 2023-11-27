@@ -15,6 +15,7 @@ const CartRow = () => {
   const handleRemove = (productId) => {
     // Update the state to remove the item
     setCart((cart) => cart.filter((item) => item.id !== productId));
+    window.cart = cart;
   };
 
   useEffect(() => {

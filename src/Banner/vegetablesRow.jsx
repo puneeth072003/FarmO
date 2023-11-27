@@ -317,6 +317,22 @@ const VegetablesRow = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProductID, setSelectedProductID] = useState(null);
 
+  const calculateAveragePrice = (product) => {
+    const farmersPrices = product.farmers.map((farmer) => farmer.price);
+    const averagePrice =
+      farmersPrices.reduce((sum, price) => sum + price, 0) /
+      farmersPrices.length;
+    return averagePrice;
+  };
+
+  // Function to update product prices with average prices
+  const updateProductPrices = (productsArray) => {
+    return productsArray.map((product) => ({
+      ...product,
+      price: calculateAveragePrice(product),
+    }));
+  };
+
   // Buy operations
   const handleBuyClick = (productID) => {
     console.log("Buy Now clicked of ID " + productID);
@@ -330,9 +346,34 @@ const VegetablesRow = () => {
   };
 
   // Cart operation
+  // const handleAddToCartClick = (productID) => {
+  //   console.log("Add to Cart clicked of ID" + productID);
+  //   window.cart.push(getProduct(productID));
+  //   console.log(window.cart);
+  //   alert("Added to cart");
+  // };
+
   const handleAddToCartClick = (productID) => {
     console.log("Add to Cart clicked of ID" + productID);
-    window.cart.push(getProduct(productID));
+
+    // Get the product details
+    const product = getProduct(productID);
+
+    // Find the farmer with the lowest price
+    const lowestPriceFarmer = product.farmers.reduce((minFarmer, farmer) => {
+      return farmer.price < minFarmer.price ? farmer : minFarmer;
+    });
+
+    // Create a new variable with the lowest price information
+    const productWithLowestPrice = {
+      ...product,
+      lowestPrice: lowestPriceFarmer.price,
+      lowestPriceFarmer: lowestPriceFarmer.name,
+    };
+
+    // Add the product with lowest price to the cart
+    window.cart.push(productWithLowestPrice);
+
     console.log(window.cart);
     alert("Added to cart");
   };
@@ -348,13 +389,15 @@ const VegetablesRow = () => {
     return window.products.find((product) => product.id === productID);
   };
 
+  const productsWithAveragePrices = updateProductPrices(window.products);
+
   const selectedProduct = getProduct(selectedProductID);
 
   return (
     <div>
       <h1>Vegetables</h1>
       <div className="product-box">
-        {window.products.map((product) => (
+        {productsWithAveragePrices.map((product) => (
           <ProductComponent
             key={product.id}
             productDetails={product}
