@@ -3,6 +3,7 @@ import "./Modal.css";
 import Modal from "react-modal";
 import { useState } from "react";
 import { useEffect } from "react";
+import FinalModal from "../Cart/FinalModal";
 
 const BuyModalComponent = ({
   isOpen,
@@ -21,15 +22,18 @@ const BuyModalComponent = ({
   //   setSelectedFarmer(event.target.value);
   // };
   // ####################################################
+  Modal.setAppElement("#root");
   const handlePurchase = () => {
     console.log(
       `Purchase confirmed: ${selectedQuantity} units from Farmer ${selectedFarmer}`
     );
-    closeModal();
   };
   const [selectedFarmer, setSelectedFarmer] = useState(null);
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [purchaseConfirm, setpurchaseConfirm] = useState(false);
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
 
   const handleQuantityChange = (event) => {
     console.log("Quantity changed");
@@ -47,7 +51,7 @@ const BuyModalComponent = ({
 
   useEffect(() => {
     calculateTotalPrice();
-  }, [selectedFarmer]);
+  }, [selectedFarmer, selectedQuantity]);
 
   const calculateTotalPrice = () => {
     let farmer = farmersData.find((f) => f.name === selectedFarmer);
@@ -59,6 +63,32 @@ const BuyModalComponent = ({
     } else {
       setTotalPrice(0);
     }
+  };
+
+  const handleFinalPurchase = () => {
+    if (name && address) {
+      calculateTotalPrice();
+      closeModal();
+      setpurchaseConfirm(true);
+      handleAdditionalInfoSubmit();
+    } else {
+      alert("Order Failure");
+    }
+  };
+
+  const handleAdditionalInfoSubmit = () => {
+    window.buyChart.push({
+      product: productInfo.name,
+      farmerName: selectedFarmer,
+      quantity: selectedQuantity,
+      customer: name,
+      customerAddress: address,
+      price: totalPrice,
+    });
+    console.log(window.buyChart);
+    console.log("Purchase confirmed!");
+    setpurchaseConfirm(true);
+    alert("Order Placed");
   };
 
   return (
@@ -134,6 +164,26 @@ const BuyModalComponent = ({
             <b>Total: ₹{totalPrice}</b>
           </h2>
         </div>
+        <h2>
+          <b>Shipping Details</b>
+        </h2>
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <br />
+        <label htmlFor="address">Address:</label>
+        <input
+          type="text"
+          id="address"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+        <br />
+        <br />
         <div className="modal-footer">
           <button
             type="button"
@@ -145,7 +195,7 @@ const BuyModalComponent = ({
           <button
             type="button"
             className="btn btn-primary"
-            onClick={handlePurchase}
+            onClick={handleFinalPurchase}
           >
             Confirm Purchase
           </button>

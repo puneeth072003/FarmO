@@ -333,7 +333,8 @@ const VegetablesRow = () => {
   const handleAddToCartClick = (productID) => {
     console.log("Add to Cart clicked of ID" + productID);
     window.cart.push(getProduct(productID));
-    console.log(cart);
+    console.log(window.cart);
+    alert("Added to cart");
   };
 
   // Remove from the cart operation

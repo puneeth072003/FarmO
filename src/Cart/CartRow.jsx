@@ -3,35 +3,11 @@ import CartComponent from "./cartComponent";
 import Tomato from "../assets/Tomato.png";
 import { useState } from "react";
 import "./Cart.css";
-import Logowhite from "./asssets/logowhite.png";
 import { Link } from "react-router-dom";
+import FinalModal from "./FinalModal";
 
 const CartRow = () => {
-  window.Cart = [
-    {
-      id: 1,
-      name: "Tomato",
-      price: 20,
-      imageUrl: Tomato,
-      farmers: [
-        { name: "Farmer Tim", price: 18 },
-        { name: "Farmer Lisa", price: 19 },
-        { name: "Farmer Alex", price: 20 },
-      ],
-    },
-    {
-      id: 2,
-      name: "Potato",
-      price: 30,
-      imageUrl: Tomato,
-      farmers: [
-        { name: "Farmer Jake", price: 28 },
-        { name: "Farmer Emily", price: 30 },
-        { name: "Farmer Ryan", price: 29 },
-      ],
-    },
-  ];
-
+  window.Cart = window.cart;
   const [cart, setCart] = useState(window.Cart);
 
   const [cartEmpty, setCartEmpty] = useState(true);
@@ -94,39 +70,7 @@ const CartRow = () => {
       </div>
 
       {/* Offcanvas Markup */}
-      <div
-        className="offcanvas offcanvas-start"
-        data-bs-backdrop="static"
-        tabIndex="-1"
-        id="buyAllOffcanvas"
-        aria-labelledby="buyAllOffcanvasLabel"
-      >
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="buyAllOffcanvasLabel">
-            Order Placed
-          </h5>
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div className="offcanvas-body">
-          <div>
-            <h3>Price: xxxxxx </h3>
-            <h5>Order successfully placed using FarmO.</h5>
-            <br />
-            <br />
-            <h4>Thank you for using</h4>
-            <img
-              src={Logowhite}
-              alt="FarmO-logo"
-              className="support-logo"
-            ></img>
-          </div>
-        </div>
-      </div>
+      <FinalModal price="20" />
     </div>
   );
 };
